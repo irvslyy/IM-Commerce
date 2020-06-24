@@ -80,6 +80,9 @@ class CodController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cod = Cod::find($id);
+        $cod->delete();
+
+        return back();
     }
 }

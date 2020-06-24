@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Grf;
 use Illuminate\Http\Request;
+use App\Exports\GrfExport;
+use Maatwebsite\Excel\Facades\Excel;
 
-class GifController extends Controller
+class GrfController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,8 @@ class GifController extends Controller
      */
     public function index()
     {
-        //
+        $grf = Grf::all();
+        return view('grf.grf',compact('grf'));
     }
 
     /**
@@ -79,6 +82,13 @@ class GifController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $grf = Grf::find($id);
+        $grf->delete();
+
+        return back();
+    }
+    public function ExportDataGrf()
+    {
+        return Excel::download(new GrfExport,'GoodReq.csv');
     }
 }

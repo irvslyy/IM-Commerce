@@ -141,7 +141,6 @@ return [
          */
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Yoeunes\Toastr\ToastrServiceProvider::class,
-        Darryldecode\Cart\CartServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,

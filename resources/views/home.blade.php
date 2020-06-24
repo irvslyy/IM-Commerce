@@ -21,18 +21,18 @@
 
 								<div class="media-body">
 									<h6 class="media-title font-weight-semibold">
-										<a href="#">{{$item->product_name}}</a>
+										<a href="{{route('cart.showItem',$item->id)}}">{{$item->product_name}}</a>
 									</h6>
 
 									<ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
-										<li class="list-inline-item"><a href="#" class="text-muted">Fashion</a></li>
-										<li class="list-inline-item"><a href="#" class="text-muted">Men's Accessories</a></li>
+										<li class="list-inline-item"><a href="#" class="text-muted">satuan</a></li>
+										<li class="list-inline-item"><a href="#" class="text-muted">Kabel</a></li>
 									</ul>
 
 									<p class="mb-3"></p>
 
 									<ul class="list-inline list-inline-dotted mb-0">
-										<li class="list-inline-item">All items from <a href="#">Aloha</a></li>
+										<li class="list-inline-item">WH-001 <a href="#">Aloha</a></li>
 										<li class="list-inline-item">Add to <a href="#">wishlist</a></li>
 									</ul>
 								</div>
@@ -41,7 +41,9 @@
 									<div class="text-muted">0 requester</div>
 									<form action="{{route('cart.post')}}" method="post">
 										@CSRF
-										<button type="submit" class="btn bg-teal-400 mt-3"><i class="icon-cart-add mr-2"></i> Add to cart</button>
+					
+
+										<button type="submit" class="btn bg-teal-400 mt-lg-0-3"><i class="icon-cart-add mr-2"></i> Add to cart</button>
 <!-- 										<a href="" class="btn bg-teal-400 mt-3"><i class="icon-collaboration"></i>Request</a>
  -->									</form>
 									
@@ -74,26 +76,15 @@
 			                		</div>
 								</div>
 
-								<div class="card-body">
-									<form action="#">
-										<div class="form-group form-group-feedback form-group-feedback-right">
-											<input type="search" class="form-control" placeholder="Search">
-											<div class="form-control-feedback">
-												<i class="icon-search4 font-size-base text-muted"></i>
-											</div>
-										</div>
-									</form>
-								</div>
-
 								<div class="card-body border-0 p-0">
-									<ul class="nav nav-sidebar mb-2">
+									<!-- <ul class="nav nav-sidebar mb-2">
 										<li class="nav-item nav-item-submenu nav-item-expanded nav-item-open">
-											<a href="#" class="nav-link">CATEGORIES</a>
+											<a href="#" class="nav-link"></a>
 											<ul class="nav nav-group-sub">
-												<li class="nav-item"><a href="#" class="nav-link"></a></li>
+												<li class="nav-item"><a href="#" class="nav-link">testing</a></li>
 											</ul>
 										</li>
-									</ul>
+									</ul> -->
 								</div>
 							</div>
 							<!-- /categories -->

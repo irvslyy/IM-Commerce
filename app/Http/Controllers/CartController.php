@@ -2,51 +2,61 @@
 
 namespace App\Http\Controllers;
 use App\Items;
+use App\Testing;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
-
-    public function store(Items $items)
+    public function store(Request $request)
     {
-        $duplicates = Cart::search(function ($cartItem, $rowId) use ($items) {
-            return $cartItem->id === $items->id;
-        });
+        // $duplicates = Cart::search(function ($cartItem, $rowId) use ($items) {
+        //     return $cartItem->id === $items->id;
+        // });
 
-        if ($duplicates->isNotEmpty()) {
-            toastr()->success('Item sudah ada dalam keranjang!');
-            return back();
-        }
+        // if ($duplicates->isNotEmpty()) {
+        //     return back();
+        // }
 
-        Cart::add($items->id, $items->items_code, $items->product_name, 1,$items->product_code)->associate('App\Item');
+        Cart::add(['id' => 1, 'name' => 'rully', 'qty' => 1,'price' => 300, 'weight' => 1 ])->associate('App\Item');
 
-        toastr()->success('Item dimasukkan ke keranjang!');
-        return back()
+        // Cart::add(array(
+        //     'id' => $request->id,
+        //     'name' => $request->name,
+        //     'qty' => $request->qty,
+        //     'price' => $request->price,
+        //     'weight' => $request->weight,
+
+        // ))->associate('App\Items');
+
+        toastr()->success('OK');
+        return back();
     }
     public function show()
     {
         return view('cart.cart');
     }
-    public function edit($id)
+
+    public function showItems($id)
     {
-        //
+        $showItems = Items::find($id);
+        return view('cart.ShowItemCart',compact('showItems'));
     }
+
     public function update(Request $request, $id)
     {
+
        $validator = Validator::make($request->all(), [
             'quantity' => 'required|numeric|between:1,5'
         ]);
 
         if ($validator->fails()) {
-            toastr()->error()->('jumlah harus dibawah 5.');
             session()->flash('errors', collect(['jumlah harus dibawah 5.']));
             return response()->json(['success' => false], 400);
         }
 
         if ($request->quantity > $request->productQuantity) {
-            toastr()->error()->('untuk saat ini tidak punya item yang cukup di stok.');
             session()->flash('errors', collect(['untuk saat ini tidak punya item yang cukup di stok.']));
             return response()->json(['success' => false], 400);
         }
@@ -58,7 +68,12 @@ class CartController extends Controller
     public function destroy($id)
     {
         Cart::remove($id);
-
         return back()->with('success_message', ' Data item berhasil di hapus!');
     }
 }
+
+
+
+
+
+

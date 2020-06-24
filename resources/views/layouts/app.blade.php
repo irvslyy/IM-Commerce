@@ -26,18 +26,18 @@
 	<div class="navbar navbar-expand-md navbar-light">
 
 		<!-- Header with logos -->
-		<div class="navbar-header navbar-dark d-none d-md-flex align-items-md-center">
+		<div class="navbar-header navbar-dark d-none d-md-flex align-items-md-center bg-white">			
 			<div class="navbar-brand navbar-brand-md">
 				<a href="index.html" class="d-inline-block">
-					<img src="../../../../global_assets/images/logo_light.png" alt="">
+					<img src="{{asset('/aset/images/logo_im.png/')}}" alt="" style="height:50px" class="ml-3">
 				</a>
 			</div>
 			
 			<div class="navbar-brand navbar-brand-xs">
-				<a href="index.html" class="d-inline-block">
-					<img src="../../../../global_assets/images/logo_icon_light.png" alt="">
-				</a>
-			</div>
+                <a href="index.html" class="d-inline-block">
+                    <!-- <img src="{{URL::to('/')}}/public/assets/images/logo_icon_light.png" alt=""> -->
+                </a>
+            </div>
 		</div>
 		<!-- /header with logos -->
 	
@@ -46,7 +46,7 @@
 		<div class="d-flex flex-1 d-md-none">
 			<div class="navbar-brand mr-auto">
 				<a href="index.html" class="d-inline-block">
-					<img src="../../../../global_assets/images/logo_dark.png" alt="">
+					<img src="" alt="">
 				</a>
 			</div>	
 
@@ -87,7 +87,7 @@
 							<ul class="media-list">
 								<li class="media">
 									<div class="mr-3">
-										<img src="../../../../global_assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
+										<img src="" width="36" height="36" class="rounded-circle" alt="">
 									</div>
 									<div class="media-body">
 										<a href="#" class="media-title font-weight-semibold"> Aurelius</a>
@@ -127,7 +127,7 @@
 
 				<li class="nav-item dropdown">
 					<a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
-						<i class="icon-cart"></i>
+					 	{{Cart::count()}} <i class="icon-cart"></i>
 						<span class="d-md-none ml-2">Carts</span>
 						<!-- <span class="badge badge-mark border-pink-400 ml-auto ml-md-0"></span> -->
 					</a>
@@ -140,40 +140,37 @@
 
 						<div class="dropdown-content-body dropdown-scrollable">
 							<ul class="media-list">
+								@if(Cart::count() <= 0 )
+									<p>Tidak ada barang dalam cart</p>
+								@else
+								  @foreach(Cart::content() as $items)
+									<li class="media">
+										<div class="mr-3">
+											<img src="#" width="36" height="36" class="rounded-circle" alt="">
+										</div>
+										<div class="media-body">
+											<div class="media-title">
+												<a href="#">
+													<span class="font-weight-semibold">{{$items->name}}</span>
+													<span class="text-muted float-right font-size-sm">04:58</span>
+												</a>
+											</div>
 
-								<!-- <li class="media">
-									<div class="mr-3">
-										<img src="../../../../global_assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
-									</div>
-									<div class="media-body">
-										<div class="media-title">
-											<a href="#">
-												<span class="font-weight-semibold">Lyy23</span>
-												<span class="text-muted float-right font-size-sm">Mon</span>
-											</a>
+											<span class="text-muted"><p>{{$items->qty}}</p></span>
+											<form action="{{route('cart.destroy',$items->id)}}" method="POST">
+												@CSRF
+												<button type="submit">delete</button>
+											</form>
 										</div>
-										
-										<span class="text-muted">kontrak Lyy23 habis</span>
-									</div>
-								</li> -->
-								<li class="media">
-									<div class="mr-3">
-										<img src="../../../../global_assets/images/placeholders/placeholder.jpg" width="36" height="36" class="rounded-circle" alt="">
-									</div>
-									<div class="media-body">
-										<div class="media-title">
-											
-										</div>
-									</div>
-								</li>
+									</li>
+								  @endforeach
+								@endif
+								
 							</ul>
 						</div>
 
 						<div class="dropdown-content-footer bg-light">
-							<a href="{{route('cart.detail')}}" class="text-grey mr-auto">All messages</a>
-							<div>
-								<a href="#" class="text-grey" data-popup="tooltip" title="Mark all as read"><i class="icon-radio-unchecked"></i></a>
-							</div>
+							<a href="{{route('cart.detail')}}" class="text-grey mr-auto">Lihat keranjang</a>
 						</div>
 					</div>
 				</li>
@@ -272,12 +269,12 @@
 						</li>
 
 						<li class="nav-item nav-item-submenu">
-							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Logistic</span></a>
+							<a href="#" class="nav-link"><i class="icon-box"></i> <span>Logistic</span></a>
 
 							<ul class="nav nav-group-sub" data-submenu-title="Layouts">
 								<li class="nav-item"><a href="{{route('cod.index')}}" class="nav-link">COD</a></li>
 								<li class="nav-item"><a href="{{route('shipping.index')}}" class="nav-link">Shipping</a></li>
-								<li class="nav-item"><a href="" class="nav-link">Grf</a></li>
+								<li class="nav-item"><a href="{{route('grf.index')}}" class="nav-link">Grf</a></li>
 								<li class="nav-item"><a href="" class="nav-link">Logistic</a></li>
 							</ul>
 						</li>
@@ -338,7 +335,7 @@
 	<script src="{{asset('aset/js/main/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('aset/js/main/app.js')}}"></script>
     @yield('script')
-    <script src="/node_modules/angular/angular.js"></script>
+ 
     @toastr_js
     @toastr_render
 	<!-- Theme JS files -->

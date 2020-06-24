@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 use App\Shipping;
 use DB;
 use App\Exports\ShippingExport;
-use Maatwebsite\Excel\Excel;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ShippingController extends Controller
 {
@@ -14,20 +14,17 @@ class ShippingController extends Controller
         $shipping = Shipping::all();
         return view('shipping.shipping',compact('shipping'));
     }
-    public function store(Request $request)
-    {
-        //
-    }
     public function update(Request $request, $id)
     {
+      
         $shipping = Shipping::find($id);
         $shipping->shipping_number = $request->shipping_number;
         $shipping->req_code = $request->req_code;
         $shipping->gerf_number = $request->gerf_number;
-        $shipping->create_date = $request->create_date;
+        $shipping->created_at = $request->created_at;
         $shipping->status = $request->status;
-        $shipping->update();
-        
+        $shipping->save();
+            
         toastr()->success('update sukses!');
         return back();
 
@@ -41,6 +38,6 @@ class ShippingController extends Controller
     }
     public function ExportDataShipping()
     {
-        return Excel::Download(new ShippingExport,'shippingData.xlxs');
+        return Excel::download(new ShippingExport,'shippingData.csv');
     }
 }

@@ -11,7 +11,7 @@ class Shipping extends Model
     	'shipping_number',
     	'req_code',
     	'gerf_number',
-    	'created_date',
-    	'status'
+    	'status',
+    	'created_at'
     ];
 }

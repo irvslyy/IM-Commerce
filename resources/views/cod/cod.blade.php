@@ -24,7 +24,7 @@
 
 						</form> -->
 						<button type="submit" class="btn btn-warning">export excel</button>
-						<button type="submit" class="btn btn-primary">export excel</button>
+						<button type="submit" class="btn btn-primary">import excel</button>
 					</div>
 
 					<table class="table datatable-sorting">
@@ -43,10 +43,10 @@
 						<tbody>
 							<tr>
 								<td>{{$cods->id}}</td>
-								<td>{{$cods->code_id}}</td>
-								<td>{{$cods->request_code}}</td>
-								<td>{{$cods->grf_number}}</td>
-								<td>{{$cods->create_date}}</td>
+								<td>{{$cods->cod_code ?? 'NULL'}}</td>
+								<td>{{$cods->request_code ?? 'NULL'}}</td>
+								<td>{{$cods->grf_number ?? 'NULL'}}</td>
+								<td>{{$cods->created_at ?? 'NULL'}}</td>
 								<td>{{$cods->status}}</td>
 								<td class="text-center">
 									<div class="list-icons">
@@ -56,14 +56,36 @@
 											</a>
 
 											<div class="dropdown-menu dropdown-menu-right">
-												<a href="{{route('shipping.destroy',$ship->id)}}" class="dropdown-item"><i class="icon-file-pdf"></i> Delete</a>
-												<a href="#" class="dropdown-item"><i class="icon-file-excel"></i> Update</a>
+												<button type="submit" class="dropdown-item" data-toggle="modal" data-target="#deleteModal"><i class="icon-trash"></i> delete</button>
+												<button type="submit" class="dropdown-item"><i class="icon-pencil"></i> update</button>
 											</div>
 										</div>
 									</div>
 								</td>
 							</tr>
 						</tbody>
+						<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">konfirmasi</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        yakin ingin menghapus?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">tutup</button>
+                                        <form action="{{route('cod.destroy',$cods->id)}}" method="POST">
+                                        @CSRF
+                                            <button type="submit" class="btn btn-primary">hapus</button>
+                                        </form>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
 						@endforeach
 					</table>
 				</div>
