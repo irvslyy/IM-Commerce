@@ -8,10 +8,10 @@
 				<div class="d-flex align-items-start flex-column flex-md-row">
 					
 					<!-- Left content -->
-					<div class="w-100 overflow-auto order-2 order-md-1">
+					<div class="w-100 overflow-auto order-2 order-md-1" ng-repeat"u in users">
 						@foreach($items as $item)
 						<!-- List -->
-						<div class="card card-body">
+						<div class="card card-body" ng-App="myApp" ng-controller="Usersku">
 							<div class="media align-items-center align-items-lg-start text-center text-lg-left flex-column flex-lg-row">
 								<div class="mr-lg-3 mb-3 mb-lg-0">
 									<a href="../../../../global_assets/images/placeholders/placeholder.jpg" data-popup="lightbox">
@@ -25,7 +25,7 @@
 									</h6>
 
 									<ul class="list-inline list-inline-dotted mb-3 mb-lg-2">
-										<li class="list-inline-item"><a href="#" class="text-muted">satuan</a></li>
+										<li class="list-inline-item"><a href="#" class="text-muted">Product code : {{$item->product_code}} </a></li>
 										<li class="list-inline-item"><a href="#" class="text-muted">Kabel</a></li>
 									</ul>
 
@@ -39,22 +39,12 @@
 
 								<div class="mt-3 mt-lg-0 ml-lg-3 text-center">
 									<div class="text-muted">0 requester</div>
-									<form action="{{route('cart.post')}}" method="post">
-										@CSRF
-					
-
-										<button type="submit" class="btn bg-teal-400 mt-lg-0-3"><i class="icon-cart-add mr-2"></i> Add to cart</button>
-<!-- 										<a href="" class="btn bg-teal-400 mt-3"><i class="icon-collaboration"></i>Request</a>
- -->									</form>
 									
-									<!-- <button type="button" class="btn bg-teal-400 mt-3"><i class="icon-cart-add mr-2"></i> Add to cart</button>
-                                    <button type="button" class="btn bg-teal-400 mt-3"><i class="icon-collaboration"></i> Request</button> -->
 								</div>
 							</div>
 						</div>
 						<!-- /list -->
 						@endforeach
-						{{$items->links()}}
 					</div>
 					<!-- /left content -->
 
@@ -64,31 +54,6 @@
 
 						<!-- Sidebar content -->
 						<div class="sidebar-content">
-
-							<!-- Categories -->
-							<div class="card">
-								<div class="card-header bg-transparent header-elements-inline">
-									<span class="text-uppercase font-size-sm font-weight-semibold">Categories</span>
-									<div class="header-elements">
-										<div class="list-icons">
-					                		<a class="list-icons-item" data-action="collapse"></a>
-				                		</div>
-			                		</div>
-								</div>
-
-								<div class="card-body border-0 p-0">
-									<!-- <ul class="nav nav-sidebar mb-2">
-										<li class="nav-item nav-item-submenu nav-item-expanded nav-item-open">
-											<a href="#" class="nav-link"></a>
-											<ul class="nav nav-group-sub">
-												<li class="nav-item"><a href="#" class="nav-link">testing</a></li>
-											</ul>
-										</li>
-									</ul> -->
-								</div>
-							</div>
-							<!-- /categories -->
-
 
 							<!-- Filters -->
 							<div class="card">
@@ -146,7 +111,22 @@
 @endsection
 
 @section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+<script type="text/javascript">
+
+	var app = angular.module('ConsumeWH', []);
+
+	app.controller('users',function ($cope, $http) {
+		$http.get("https://jsonplaceholder.typicode.com/posts/1").then(function ($response) {
+			$scope.kotak  response.data.usersnya;
+		});z
+	})
 
 
+</script>
 
 @endsection
+
+
+
+

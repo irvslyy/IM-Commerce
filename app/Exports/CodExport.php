@@ -1,17 +1,16 @@
 <?php
 
 namespace App\Exports;
-
-use App\Shipping;
+use App\Cod;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class ShippingExport implements FromCollection
+class CodExport implements FromCollection
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return Shipping::all();
+        return Cod::all();
     }
 }

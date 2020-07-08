@@ -139,6 +139,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        Hootlex\Moderation\ModerationServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Yoeunes\Toastr\ToastrServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,

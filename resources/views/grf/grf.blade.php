@@ -7,13 +7,13 @@
 		<div class="col-md-12">
 			<!-- Default ordering -->
 				<div class="card">
-					<div class="card-header header-elements-inline">
-						<h5 class="card-title">Good Request Form</h5>
+					<div class="card-header bg-white header-elements-inline">
+						<h6 class="card-title">Good Request Form</h6>
 						<div class="header-elements">
 							<div class="list-icons">
-		                		<a class="list-icons-item" data-action="collapse"></a>
-		                	</div>
-	                	</div>
+				              <!-- <a class="list-icons-item" data-action="collapse"></a> -->
+				            </div>
+			            </div>
 					</div>
 
 					<div class="card-body">
@@ -32,15 +32,15 @@
 								<th class="text-center">Actions</th>
 							</tr>
 						</thead>
-						@foreach($grf as $goodReq)
+						@foreach($goodsReq as $goodsReq)
 						<tbody>
 							<tr>
-								<td>{{$goodReq->grf_number}}</td>
-                                <td>{{$goodReq->heir_code}}</td>
-                                <td>{{$goodReq->employee_number}}</td>
-                                <td>{{$goodReq->access_code}}</td>
-                                <td>{{$goodReq->status}}</td>
-                                <td>{{$goodReq->created_at}}</td>
+								<td>{{$goodsReq->grf_number}}</td>
+								<td>{{$goodsReq->heir_code}}</td>
+								<td>{{$goodsReq->employee_number}}</td>
+								<td>{{$goodsReq->access_code}}</td>
+								<td>{{$goodsReq->status}}</td>
+								<td>{{$goodsReq->created_at}}</td>
 								<td class="text-center">
 									<div class="list-icons">
 										<div class="dropdown">
@@ -58,7 +58,7 @@
 								</td>
 							</tr>
 						</tbody>
-						<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
@@ -72,7 +72,57 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">tutup</button>
-                                        
+                                        <form action="" method="POST">
+                                        @CSRF
+                                            <button type="submit" class="btn btn-primary">hapus</button>
+                                        </form>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">update</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{route('grf.update',$goodsReq->id)}}" method="POST">
+                                        	@CSRF
+                                        	<div class="row">
+                                        		<div class="col-md-6">
+                                        			<label></label>
+                                        			<input type="text" class="form-control" name="grf_number" value="{{$goodsReq->grf_number}}">
+                                        		</div>
+                                        		<div class="col-md-6">
+                                        			<label></label>
+                                        			<input type="text" class="form-control" name="heir_code" value="{{$goodsReq->heir_code}}">
+                                        		</div>
+                                        	</div>
+                                        	<div class="row">
+                                        		<div class="col-md-6">
+                                        			<label></label>
+                                        			<input type="text" class="form-control" name="employee_number" value="{{$goodsReq->employee_number}}">
+                                        		</div>
+                                        		<div class="col-md-6">
+                                        			<label></label>
+                                        			<input type="text" class="form-control" name="access_code" value="{{$goodsReq->access_code}}">
+                                        		</div>
+                                        	</div>
+                                        	<div class="row">
+                                        		<div class="col-md-6">
+                                        			<label></label>
+                                        			<input type="text" class="form-control" name="status" value="{{$goodsReq->status}}">
+                                        		</div>
+                                        	</div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        	<button type="button" class="btn btn-secondary" data-dismiss="modal">tutup</button>
+                                         	<button type="submit" class="btn btn-primary">update</button>
+                                        </form>
                                     </div>
                                     </div>
                                 </div>
@@ -81,7 +131,6 @@
 					</table>
 				</div>
 				<!-- /default ordering -->
-
 		</div>
 	</div>
 </div>
@@ -92,3 +141,5 @@
     <script src="{{asset('js/datatables.min.js')}}"></script>
     <script src="{{asset('js/datatables_sorting.js')}}"></script>
 @endsection
+
+

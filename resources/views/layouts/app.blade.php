@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>IM Play</title>
+	<title>IM Mplay</title>
 	<!-- Global stylesheets -->
     <link rel="stylesheet" href="{{asset('aset/css/icons/icomoon/styles.css')}}">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -28,7 +28,7 @@
 		<!-- Header with logos -->
 		<div class="navbar-header navbar-dark d-none d-md-flex align-items-md-center bg-white">			
 			<div class="navbar-brand navbar-brand-md">
-				<a href="index.html" class="d-inline-block">
+				<a href="{{route('home')}}" class="d-inline-block">
 					<img src="{{asset('/aset/images/logo_im.png/')}}" alt="" style="height:50px" class="ml-3">
 				</a>
 			</div>
@@ -90,8 +90,8 @@
 										<img src="" width="36" height="36" class="rounded-circle" alt="">
 									</div>
 									<div class="media-body">
-										<a href="#" class="media-title font-weight-semibold"> Aurelius</a>
-										<span class="d-block text-muted font-size-sm">Calon karyawan</span>
+										<!-- <a href="#" class="media-title font-weight-semibold"> Aurelius</a>
+										<span class="d-block text-muted font-size-sm">Calon karyawan</span> -->
 									</div>
 									<div class="ml-3 align-self-center"><span class="badge badge-mark border-grey-400"></span></div>
 								</li>
@@ -127,7 +127,7 @@
 
 				<li class="nav-item dropdown">
 					<a href="#" class="navbar-nav-link dropdown-toggle caret-0" data-toggle="dropdown">
-					 	{{Cart::count()}} <i class="icon-cart"></i>
+					 	<span class="badge bg-pink-400 badge-pill ml-md-3 mr-md-auto">{{Cart::count()}}</span> <i class="icon-cart"></i>
 						<span class="d-md-none ml-2">Carts</span>
 						<!-- <span class="badge badge-mark border-pink-400 ml-auto ml-md-0"></span> -->
 					</a>
@@ -156,11 +156,7 @@
 												</a>
 											</div>
 
-											<span class="text-muted"><p>{{$items->qty}}</p></span>
-											<form action="{{route('cart.destroy',$items->id)}}" method="POST">
-												@CSRF
-												<button type="submit">delete</button>
-											</form>
+											<span class="text-muted"><p>Quantity: {{$items->qty}}</p></span>
 										</div>
 									</li>
 								  @endforeach
@@ -170,7 +166,7 @@
 						</div>
 
 						<div class="dropdown-content-footer bg-light">
-							<a href="{{route('cart.detail')}}" class="text-grey mr-auto">Lihat keranjang</a>
+						<a href="{{route('cart.detail')}}" class="text-grey mr-auto">Lihat keranjang</a>
 						</div>
 					</div>
 				</li>
@@ -182,10 +178,7 @@
 					</a>
 
 					<div class="dropdown-menu dropdown-menu-right">
-						<a href="#" class="dropdown-item"><i class="icon-user-plus"></i> My profile</a>
-						<!-- <a href="#" class="dropdown-item"><i class="icon-comment-discussion"></i> Messages <span class="badge badge-pill bg-indigo-400 ml-auto">58</span></a> -->
-						<div class="dropdown-divider"></div>
-						<a href="#" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
+						<a href="{{route('users.account')}}" class="dropdown-item"><i class="icon-cog5"></i> Account settings</a>
 						<a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -275,11 +268,9 @@
 								<li class="nav-item"><a href="{{route('cod.index')}}" class="nav-link">COD</a></li>
 								<li class="nav-item"><a href="{{route('shipping.index')}}" class="nav-link">Shipping</a></li>
 								<li class="nav-item"><a href="{{route('grf.index')}}" class="nav-link">Grf</a></li>
-								<li class="nav-item"><a href="" class="nav-link">Logistic</a></li>
+								<li class="nav-item"><a href="{{route('logistic.index')}}" class="nav-link">Logistic</a></li>
 							</ul>
 						</li>
-						
-						<li class="nav-item"><a href="{{route('users.manage')}}" class="nav-link"><i class="icon-users"></i> <span>User Management</span></a></li>
 						<!-- /main -->
 							
 					</ul>

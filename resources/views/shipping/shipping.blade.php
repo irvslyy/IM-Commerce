@@ -7,16 +7,14 @@
 		<div class="col-md-12">
 			<!-- Default ordering -->
 				<div class="card">
-					<div class="card-header header-elements-inline">
-						<h5 class="card-title">Shipping</h5>
-						<div class="header-elements">
-							<div class="list-icons">
-		                		<a class="list-icons-item" data-action="collapse"></a>
-		                		<a class="list-icons-item" data-action="reload"></a>
-		                		<a class="list-icons-item" data-action="remove"></a>
-		                	</div>
-	                	</div>
-					</div>
+					<div class="card-header bg-white header-elements-inline">
+                        <h6 class="card-title">Shipping</h6>
+                        <div class="header-elements">
+                            <div class="list-icons">
+                              <!-- <a class="list-icons-item" data-action="collapse"></a> -->
+                            </div>
+                        </div>
+                    </div>
 
 					<div class="card-body">
 						<a href="{{route('shipping.export')}}" class="btn btn-warning"> export excel</a>
@@ -27,9 +25,9 @@
 							<tr>
 								<th>id</th>
 								<th>shipping number</th>
-								<th>req_code</th>
-								<th>gerf_number</th>
-								<th>create_date</th>
+								<th>request code</th>
+								<th>grf number</th>
+								<th>created at</th>
 								<th>status</th>
 								<th class="text-center">Actions</th>
 							</tr>

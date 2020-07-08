@@ -7,31 +7,24 @@
 		<div class="col-md-12">
 			<!-- Default ordering -->
 				<div class="card">
-					<div class="card-header header-elements-inline">
-						<h5 class="card-title">cod</h5>
+					<div class="card-header bg-white header-elements-inline">
+						<h6 class="card-title">Cash on delivery</h6>
 						<div class="header-elements">
 							<div class="list-icons">
-		                		<a class="list-icons-item" data-action="collapse"></a>
-		                		<a class="list-icons-item" data-action="reload"></a>
-		                		<a class="list-icons-item" data-action="remove"></a>
-		                	</div>
-	                	</div>
+				              <!-- <a class="list-icons-item" data-action="collapse"></a> -->
+				            </div>
+			            </div>
 					</div>
 
 					<div class="card-body">
-						<!-- <form action="{{route('shipping.export')}}" method="GET">
-							@CSRF
-
-						</form> -->
-						<button type="submit" class="btn btn-warning">export excel</button>
-						<button type="submit" class="btn btn-primary">import excel</button>
+						<a href="{{route('cod.export')}}" class="btn btn-warning">export excel</a>
 					</div>
 
 					<table class="table datatable-sorting">
 						<thead>
 							<tr>
 								<th>id</th>
-								<th>code id</th>
+								<th>cod code</th>
 								<th>request code</th>
 								<th>Grf number</th>
 								<th>create date</th>
@@ -57,14 +50,14 @@
 
 											<div class="dropdown-menu dropdown-menu-right">
 												<button type="submit" class="dropdown-item" data-toggle="modal" data-target="#deleteModal"><i class="icon-trash"></i> delete</button>
-												<button type="submit" class="dropdown-item"><i class="icon-pencil"></i> update</button>
+												<button type="submit" class="dropdown-item" data-toggle="modal" data-target="#updateModal"><i class="icon-pencil"></i> update</button>
 											</div>
 										</div>
 									</div>
 								</td>
 							</tr>
 						</tbody>
-						<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
@@ -81,6 +74,47 @@
                                         <form action="{{route('cod.destroy',$cods->id)}}" method="POST">
                                         @CSRF
                                             <button type="submit" class="btn btn-primary">hapus</button>
+                                        </form>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">update</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="{{route('cod.update',$cods->id)}}" method="POST">
+                                        	@CSRF
+                                        	<div class="row">
+                                        		<div class="col-md-6">
+                                        			<label>COD Code</label>
+                                        			<input type="text" class="form-control" name="cod_code" value="{{$cods->cod_code}}">
+                                        		</div>
+                                        		<div class="col-md-6">
+                                        			<label>Request Code</label>
+                                        			<input type="text" class="form-control" name="request_code" value="{{$cods->request_code}}">
+                                        		</div>
+                                        	</div>
+                                        	<div class="row">
+                                        		<div class="col-md-6">
+                                        			<label>Grf Number</label>
+                                        			<input type="text" class="form-control" name="grf_number" value="{{$cods->grf_number}}">
+                                        		</div>
+                                        		<div class="col-md-6">
+                                        			<label>status</label>
+                                        			<input type="text" class="form-control" name="status" value="{{$cods->status}}">
+                                        		</div>
+                                        	</div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        	<button type="button" class="btn btn-secondary" data-dismiss="modal">tutup</button>
+                                         	<button type="submit" class="btn btn-primary">update</button>
                                         </form>
                                     </div>
                                     </div>

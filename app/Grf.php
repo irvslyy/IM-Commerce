@@ -13,5 +13,11 @@ class Grf extends Model
     	'employee_number',
     	'access_code',
     	'status',
-    ];
+	];
+	public function Logistic()
+	{
+		return $this->hasMany('App\Logistic');
+	}
 }
+
+

@@ -12,16 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
-
-// Route::group(['middleware' => ['prevent-back-history']], function () {
+Route::group(['middleware' => ['prevent-back-history']], function () {
 
 	Auth::routes();
-	Route::group(['middleware' => ['login-verif']], function () {
 
 		Route::get('/home/', 'HomeController@index')->name('home');
+		Route::get('/cart/show/item/cart-{id}/','HomeController@showItems')->name('cart.showItem');
 
 		Route::get('/commerce/','MainController@index')->name('commerce');
 
@@ -29,11 +28,15 @@ Route::get('/', function () {
 		Route::post('/cart/post/','CartController@store')->name('cart.post');
 		Route::get('/cart/detail/users/','CartController@show')->name('cart.detail');
 		Route::post('/cart/delete/{id}/','CartController@destroy')->name('cart.destroy');
-		
-		Route::get('/cart/show/item/{id}','CartController@showItems')->name('cart.showItem');
 
 		//USERS
 		Route::get('/users/management/','UsersController@index')->name('users.manage');
+		Route::get('/users/profile/','UsersController@ShowUsers')->name('users.profile');
+		Route::get('/users/account/','UsersController@Account')->name('users.account');
+
+		//LOGISTIC
+		Route::get('/logistic/','LogisticController@index')->name('logistic.index');
+		Route::post('/logistic/delete/{id}','LogisticController@delete')->name('logistic.delete');
 
 		//SHIPPING
 		Route::get('/shipping/','ShippingController@index')->name('shipping.index');
@@ -44,13 +47,18 @@ Route::get('/', function () {
 		//GRF
 		Route::get('/goodsRequestForm/','GrfController@index')->name('grf.index');
 		Route::post('/goodsRequestForm/delete/{id}/','GrfController@destroy')->name('grf.destroy');
+		Route::post('/goodsRequestForm/update/{id}/','GrfController@update')->name('grf.update');
 		Route::get('/grf/export/','GrfController@ExportDataGrf')->name('grf.export');
 
 		//COD
+		Route::get('/cod/export/','CodController@ExportDataCod')->name('cod.export');
 		Route::get('/cod/','CodController@index')->name('cod.index');
-		Route::get('/cod/delete/{id}','CodController@destroy')->name('cod.destroy');
-	});
-// });
+		Route::post('/cod/update/{id}/','CodController@update')->name('cod.update');
+		Route::post('/cod/delete/{id}','CodController@destroy')->name('cod.destroy');
+
+		Route::get('/get/','UsersController@get');
+		Route::get('/json-DataWh/','HomeController@getDataWh');
+});
 
 
 
