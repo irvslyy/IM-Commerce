@@ -18,9 +18,9 @@ class UsersController extends Controller
     }
     public function Account()
     {
-        $client = new \GuzzleHttp\Client();
-        $response = $client->request('GET', 'http://10.9.20.139/laravel/IM-MPLAY/api/user/10');
-        $response->getBody(); 
+        // $client = new \GuzzleHttp\Client();
+        // $response = $client->request('GET', 'http://10.9.20.139/laravel/IM-MPLAY/api/user/10');
+        // $response->getBody(); 
     	return view('users.account');
     }
 }

@@ -37,47 +37,43 @@
 						<table class="table table-striped">
 							<tr>
 								<td><b>NAMA</b></td>
-								<td>{{nama}}</td>
+								<td id="nama"></td>
 							</tr>
 							<tr>
 								<td><b>GENDER</b></td>
-								<td></td>
+								<td id="gender"></td>
 							</tr>
 							<tr>
 								<td><b>MARITAL STATUS</b></td>
-								<td></td>
+								<td id="marital"></td>
 							</tr>
 							<tr>
 								<td><b>AGAMA</b></td>
-								<td></td>
+								<td id="agama"></td>
 							</tr>
 							<tr>
 								<td><b>TEMPAT LAHR</b></td>
-								<td></td>
+								<td id="tempatlahir"></td>
 							</tr>
 							<tr>
 								<td><b>TANGGAL LAHIR</b></td>
-								<td></td>
+								<td id="tanggallahir"></td>
 							</tr>
 							<tr>
 								<td><b>GOL DARAH</b></td>
-								<td></td>
+								<td id="goldar"></td>
 							</tr>
 							<tr>
 								<td><b>KENEGARAAN</b></td>
-								<td></td>
+								<td id="kenegaraan"></td>
 							</tr>
 							<tr>
 								<td><b>TELEPON RUMAH</b></td>
-								<td></td>
+								<td id="telpon_rumah"></td>
 							</tr>
 							<tr>
 								<td><b>NOMOR HANDPHONE</b></td>
-								<td></td>
-							</tr>
-							<tr>
-								<td><b>TELEPON RUMAH</b></td>
-								<td></td>
+								<td id="nomor_hp"></td>
 							</tr>
 						</table>
 					</div>
@@ -119,6 +115,33 @@
     <script src="{{asset('js/datatables_sorting.js')}}"></script>
 	<script src="{{asset('js/profile.js')}}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.9/angular.min.js"></script>
+	<script>
+		// let object = [];
+		// let nama = document.getElementById('nama').value;
+		// let gender = document.getElementById('gender').value;
+		// let marital = document.getElementById('marital').value;
+		// $(document).ready(function()
+		
+		var Profile  = Array([0]);
+		$(document.ready(function () {
+			$.get(url,function (response) {
+				response.forEach(function(data) {
+					Profile.push(data.nama);
+					Profile.push(data.gender);
+					Profile.push(data.marital);
+					Profile.push(data.agama);
+					Profile.push(data.tempatlahir);
+					Profile.push(data.tanggallahir);
+					Profile.push(data.goldar);
+					Profile.push(data.kenegaraan);
+					Profile.push(data.telpon_rumah);
+					Profile.push(data.nomor_hp);
+				});
+			});
+		}));
+
+
+	</script>
 @endsection
 
 
