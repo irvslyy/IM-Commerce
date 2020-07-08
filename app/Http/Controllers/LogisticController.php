@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Logistic;
+use DataTables;
 use Illuminate\Http\Request;
 
 class LogisticController extends Controller

@@ -45,6 +45,7 @@ Route::group(['middleware' => ['prevent-back-history']], function () {
 		Route::post('/shipping/update/{id}','ShippingController@update')->name('shipping.update');
 
 		//GRF
+		Route::get('/goodReqJson/','GrfController@indexJson');
 		Route::get('/goodsRequestForm/','GrfController@index')->name('grf.index');
 		Route::post('/goodsRequestForm/delete/{id}/','GrfController@destroy')->name('grf.destroy');
 		Route::post('/goodsRequestForm/update/{id}/','GrfController@update')->name('grf.update');
@@ -54,10 +55,12 @@ Route::group(['middleware' => ['prevent-back-history']], function () {
 		Route::get('/cod/export/','CodController@ExportDataCod')->name('cod.export');
 		Route::get('/cod/','CodController@index')->name('cod.index');
 		Route::post('/cod/update/{id}/','CodController@update')->name('cod.update');
-		Route::post('/cod/delete/{id}','CodController@destroy')->name('cod.destroy');
+		Route::post('/cod/delete/{id}/','CodController@destroy')->name('cod.destroy');
 
 		Route::get('/get/','UsersController@get');
 		Route::get('/json-DataWh/','HomeController@getDataWh');
+
+		Route::get('/hashMyAss/','HomeController@HashMyAss');
 });
 
 

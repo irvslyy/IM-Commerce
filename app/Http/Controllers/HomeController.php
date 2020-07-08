@@ -10,9 +10,15 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    protected $hashids;
+
     public function __construct()
     {
         $this->middleware('auth');
+    }
+    public function bar($id)
+    {
+        $this->Hashids->encode($id);
     }
     public function index()
     {
@@ -35,16 +41,21 @@ class HomeController extends Controller
         return $body;   
     }
     public function showItems($id)
-    {       
+    {   
+        // $e = new Hashids('',77);
+        // $q = $e->encode($q);
+
         $showItems = Items::findOrFail($id);
         return view('cart.ShowItemCart',compact('showItems'));
     }
     public function HashMyAss()
     {
-        $hashNow = new Hashids();
-        $id = $hashNow->encode(1,2,3,4,5);
+        $hashNow = new Hashids('',30);
+        $id = $hashNow->encodeHex(1);
 
-        return $id;
+        return response()->json([
+            'data' => $id,
+        ]);
     }
 
 }

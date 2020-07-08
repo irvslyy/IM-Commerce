@@ -13,6 +13,13 @@ class GrfController extends Controller
         $goodsReq = Grf::all();
         return view('grf.grf',compact('goodsReq'));
     }
+    public function indexJson()
+    {
+        $goodsReq = Grf::all();
+        return response()->json([
+            'data' => $goodsReq
+        ]);
+    }
     public function update(Request $request, $id)
     {
         $validateGrf = $request->validate([
