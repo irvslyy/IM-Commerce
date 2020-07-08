@@ -16,6 +16,13 @@ class ShippingController extends Controller
     }
     public function update(Request $request, $id)
     {
+        $validateShip = $request->validate([
+            'shipping_number' => 'required|min:5|max:14',
+            'req_code' => 'required|min:5|max:14',
+            'gerf_number' => 'required|min:5|max:14',
+            'created_at' => 'required|min:5|max:14',
+            'status' => 'required|min:5|max:14',
+        ]);
       
         $shipping = Shipping::find($id);
         $shipping->shipping_number = $request->shipping_number;
