@@ -95,4 +95,7 @@
 @section('script')
     <script src="{{asset('js/datatables.min.js')}}"></script>
     <script src="{{asset('js/datatables_sorting.js')}}"></script>
+    <script>
+    
+    </script>
 @endsection

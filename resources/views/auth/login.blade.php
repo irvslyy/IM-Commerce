@@ -41,54 +41,50 @@
 							</div>
 
 							<div class="form-group form-group-feedback form-group-feedback-left">
-                                <input type="email" class="form-control" name="email" required autocomplete="email" autofocus placeholder="enter email">
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="email" autofocus placeholder="enter email">
 								<div class="form-control-feedback">
 									<i class="icon-user text-muted"></i>
+								</div>
+
+								@error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+							</div>
+
+							<div class="form-group form-group-feedback form-group-feedback-left">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="enter password">
+								<div class="form-control-feedback">
+									<i class="icon-lock2 text-muted"></i>
+								</div>
+
+								@error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+							</div>
+
+							<div class="form-group form-group-feedback form-group-feedback-left">
+								<div class="captcha">
+								<span width="50%">{!! captcha_img() !!}</span>
+									<button type="button" class="btn btn-success" id="refresh"><i class="icon-lock" ></i></button>
 								</div>
 							</div>
 
 							<div class="form-group form-group-feedback form-group-feedback-left">
-                            <input type="password" class="form-control" name="password" required autocomplete="current-password" placeholder="enter password">
+                            <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
 								<div class="form-control-feedback">
-									<i class="icon-lock2 text-muted"></i>
+									<i class="icon-dots text-muted"></i>
 								</div>
 							</div>
-
-							<!-- <div class="form-group d-flex align-items-center">
-								<div class="form-check mb-0">
-									<label class="form-check-label">
-										<input type="checkbox" name="remember" class="form-input-styled" checked data-fouc>
-										Remember
-									</label>
-								</div>
-
-								<a href="login_password_recover.html" class="ml-auto">Forgot password?</a>
-							</div> -->
+							
 
 							<div class="form-group">
 								<button type="submit" class="btn btn-primary btn-block">Sign in <i class="icon-circle-right2 ml-2"></i></button>
 							</div>
-
-							<!-- <div class="form-group text-center text-muted content-divider">
-								<span class="px-2">or sign in with</span>
-							</div>
-
-							<div class="form-group text-center">
-								<button type="button" class="btn btn-outline bg-indigo border-indigo text-indigo btn-icon rounded-round border-2"><i class="icon-facebook"></i></button>
-								<button type="button" class="btn btn-outline bg-pink-300 border-pink-300 text-pink-300 btn-icon rounded-round border-2 ml-2"><i class="icon-dribbble3"></i></button>
-								<button type="button" class="btn btn-outline bg-slate-600 border-slate-600 text-slate-600 btn-icon rounded-round border-2 ml-2"><i class="icon-github"></i></button>
-								<button type="button" class="btn btn-outline bg-info border-info text-info btn-icon rounded-round border-2 ml-2"><i class="icon-twitter"></i></button>
-							</div>
-
-							<div class="form-group text-center text-muted content-divider">
-								<span class="px-2">Don't have an account?</span>
-							</div> -->
-<!-- 
-							<div class="form-group">
-								<a href="#" class="btn btn-light btn-block">Sign up</a>
-							</div>  -->
-
-							<!-- <span class="form-text text-center text-muted">By continuing, you're confirming that you've read our <a href="#">Terms &amp; Conditions</a> and <a href="#">Cookie Policy</a></span> -->
+							
 						</div>
 					</div>
 				</form>
@@ -104,13 +100,11 @@
 	<!-- /page content -->
 
 
-<!-- Core JS files -->
+		  <!-- Core JS files -->
 <script src="{{asset('aset/js/main/jquery.min.js')}}"></script>
 	<script src="{{asset('aset/js/main/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('aset/js/main/app.js')}}"></script>
 
-	<!-- <script src="{{asset('aset/js/plugins/loaders/blockui.min.js')}}"></script> -->
-	<!-- <script src="{{asset('aset/js/plugins/ui/ripple.min.js')}}"></script> -->
 	<!-- /core JS files -->
 	<!-- Theme JS files -->
             <script src="{{asset('aset/js/plugins/visualization/d3/d3.min.js')}}"></script>
@@ -121,5 +115,16 @@
             <script src="{{asset('aset/js/plugins/pickers/daterangepicker.js')}}"></script>
             <script src="{{asset('aset/js/demo_pages/dashboard.js')}}"></script>
 	<!-- /theme JS files -->
+	<script>
+		$('#refresh').click(function(){
+			$.ajax({
+				type:'GET',
+				url:'{{route('captcha')}}',
+				success:function(data){
+					$(".captcha span").html(data.captcha);
+				}
+			});
+		});
+	</script>
 </body>
 </html>

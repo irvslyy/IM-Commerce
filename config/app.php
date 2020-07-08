@@ -139,6 +139,7 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        Mews\Captcha\CaptchaServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
         Hootlex\Moderation\ModerationServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
@@ -198,6 +199,7 @@ return [
     */
 
     'aliases' => [
+        'Captcha' => Mews\Captcha\Facades\Captcha::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,

@@ -16,10 +16,19 @@ class HomeController extends Controller
     {
         $this->middleware('auth');
     }
+
+    //ini json nya si captcha
+    public function refreshCaptcha()
+    {
+        return response()->json(['captcha'=> captcha_img()]);
+    }
+
+    //ini encoding ID
     public function bar($id)
     {
         $this->Hashids->encode($id);
     }
+
     public function index()
     {
         $items = DB::table('Items')->get();

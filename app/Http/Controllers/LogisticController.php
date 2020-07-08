@@ -12,6 +12,14 @@ class LogisticController extends Controller
         $logistics = Logistic::all();
         return view('logistic.logistic',compact('logistics'));
     }
+
+    public function Logistic()
+    {
+        $logistic = Logistic::all();
+        return DataTables::eloquent($logistic)
+                ->addIndexColumn()
+                ->toJson();
+    }
     
     public function delete($id)
     {

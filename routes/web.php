@@ -24,6 +24,9 @@ Route::group(['middleware' => ['prevent-back-history']], function () {
 
 		Route::get('/commerce/','MainController@index')->name('commerce');
 
+		//LOGIN CAPCTHA
+		Route::get('/refreshcaptcha/', 'HomeController@refreshCaptcha')->name('captcha');
+
 		//CART USERS
 		Route::post('/cart/post/','CartController@store')->name('cart.post');
 		Route::get('/cart/detail/users/','CartController@show')->name('cart.detail');
